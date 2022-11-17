@@ -1,0 +1,17 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build 
+      run: |
+        docker build . --file Dockerfile --tag latest
+        docker tag latest $(date +%s)
+        docker push lastest
